@@ -1,1 +1,1 @@
-# -sirexjs-cli
+# sirexjs-cli
