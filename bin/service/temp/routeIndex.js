@@ -4,8 +4,10 @@ const express = require('express');
 const router = express.Router();
 
 // User authentication
-const middleware = require('middleware');
-const serviceGateway = require('services');
+const {
+  Services,
+  middleware
+} = require('sirexjs');
 
 module.exports = (function () {
 
