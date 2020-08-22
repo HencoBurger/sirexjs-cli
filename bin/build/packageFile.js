@@ -83,28 +83,28 @@ APP_PORT=3000
     fs.writeFileSync(`${projectFolder}/package.json`, defaultInitFile);
 
     fs.mkdirSync(`${projectFolder}/src`);
-    fs.writeFileSync(`${projectFolder}/src/README.md`, 'This is where all your code goes.');
+    fs.writeFileSync(`${projectFolder}/src/README.md`, '#This is where all your code goes.');
 
     fs.mkdirSync(`${projectFolder}/src/middleware`);
-    fs.writeFileSync(`${projectFolder}/src/middleware/README.md`, 'Expressjs middleware goes here.');
+    fs.writeFileSync(`${projectFolder}/src/middleware/README.md`, '#Expressjs middleware goes here. You can use the SirexJs-CLI to generate middleware');
     
     fs.mkdirSync(`${projectFolder}/src/databases`);
-    fs.writeFileSync(`${projectFolder}/src/databases/README.md`, 'Any database implementations go here, put every database connection in its own folder.');
+    fs.writeFileSync(`${projectFolder}/src/databases/README.md`, '#Any database implementations go here, put every database connection in its own folder.');
 
     fs.mkdirSync(`${projectFolder}/src/router`);
     let routeIndex = fs.readFileSync(path.resolve(__dirname, "../service/temp/routeIndex.js"));
     fs.writeFileSync(`${projectFolder}/src/router/index.js`, routeIndex);
-    fs.writeFileSync(`${projectFolder}/src/router/README.md`, 'Main entry to your API end-points.');
+    fs.writeFileSync(`${projectFolder}/src/router/README.md`, '#Main entry to your API end-points.');
 
     fs.mkdirSync(`${projectFolder}/src/services`);
-    fs.writeFileSync(`${projectFolder}/src/services/README.md`, 'Home of all your created services.');
+    fs.writeFileSync(`${projectFolder}/src/services/README.md`, '#Home of all your created services.');
 
     fs.mkdirSync(`${projectFolder}/src/utilities`);
-    fs.writeFileSync(`${projectFolder}/src/utilities/README.md`, `Place code here that doesn't really belong under a service, things like payment platform SDK or transactional email provider.
+    fs.writeFileSync(`${projectFolder}/src/utilities/README.md`, `#Place code here that doesn't really belong under a service, things like payment platform SDK or transactional email provider.
       `);
 
     fs.mkdirSync(`${projectFolder}/test`);
-    fs.writeFileSync(`${projectFolder}/test/README.md`, 'Put all the tests for your code here.');
+    fs.writeFileSync(`${projectFolder}/test/README.md`, '#Put all the tests for your code here.');
 
     if(process.cwd() !== projectFolder) {
       shell.cd(projectFolder);
