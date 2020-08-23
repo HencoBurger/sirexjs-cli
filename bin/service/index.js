@@ -21,21 +21,6 @@ module.exports = () => {
     return false;
   }
 
-  fs.writeFileSync(`${serviceFolder}/index.js`,
-    `'use strict';
-
-const sirexjs = require('sirexjs');
-
-class ${helpers.capitalized(serviceData.service_name)}Service extends sirexjs.Services {
-  get serviceName() {
-    return '${serviceData.service_name}';
-  }
-}
-
-module.exports = (() => { return new ${helpers.capitalized(serviceData.service_name)}Service() })();
-
-`);
-
   fs.mkdirSync(`${serviceFolder}/routes`);
   let routeIndex = fs.readFileSync(path.resolve(__dirname, "./temp/routeIndex.js"));
   fs.writeFileSync(`${serviceFolder}/routes/index.js`, routeIndex);
@@ -45,7 +30,10 @@ module.exports = (() => { return new ${helpers.capitalized(serviceData.service_n
   fs.writeFileSync(`${serviceFolder}/model/index.js`,
     `'use strict';
 
-const sirexjs = require('sirexjs');
+const {
+  Services,
+  Databases
+} = require('sirexjs');
 
 // You can extend any database class here
 
@@ -54,7 +42,7 @@ module.exports = class ${helpers.capitalized(serviceData.service_name)}Model {
   get collectionName() {
     return '${serviceData.service_name}';
   }
-}
+};
 `);
  
   fs.mkdirSync(`${serviceFolder}/managers`);

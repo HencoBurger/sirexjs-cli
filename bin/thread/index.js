@@ -36,11 +36,15 @@ module.exports = () => {
   fs.writeFileSync(`${threadFolder}/index.js`,
     `'use strict';
 
+const {
+  Services
+} = require('sirexjs');
+
 // ${threadData.thread_name} Thread function
 module.exports = function() {
   // Put some long running code here.
-  return 'something';
-}
+  return 'something'; // Return something when you are done
+};
 
 `);
 

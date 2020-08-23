@@ -139,7 +139,8 @@ APP_PORT=3000
 
     shell.exec('npm shrinkwrap');
 
-    term.green(`\n\nSetup and ready to go...`);
+    term.green(`\n\Run application - npm run dev`);
+    term.green(`\n\nAccess application - 127.0.0.1:3000`);
   } catch(e) {
     console.error(e);
   }

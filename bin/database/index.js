@@ -11,32 +11,6 @@ module.exports = () => {
 
   let projectFolder = process.cwd();
 
-  let databasesFolder = `${projectFolder}/src/databases`;
-
-  if (!fs.existsSync(databasesFolder)) {
-    fs.mkdirSync(databasesFolder);
-
-    fs.writeFileSync(`${projectFolder}/src/databases/index.js`,
-      `/*
-
-  DO NOT DELETE OR MODIFY THIS FILE
-
-  This file loads up saved Database connections.
-
-*/
-
-'use strict';
-
-const sirexjs = require('sirexjs');
-
-module.exports = (() => {
- return sirexjs.Database.load();
-})();
-`);
-    fs.writeFileSync(`${projectFolder}/src/databases/README.md`, '');
-
-  }
-
   let databaseFolder = `${projectFolder}/src/databases/${databaseData.database_name}`;
 
   if (!fs.existsSync(databaseFolder)) {
@@ -50,29 +24,24 @@ module.exports = (() => {
   fs.writeFileSync(`${databaseFolder}/index.js`,
     `'use strict';
 
-const sirexjs = require('sirexjs');
+const {
+  Services
+} = require('sirexjs');
 
-// Database connection goes here
+/** 
+ * Extend this Class with your prefered database
+ * Ex. class ${helpers.capitalized(databaseData.database_name)}Database extends myDB {
+ * 
+*/
 
-class ${helpers.capitalized(databaseData.database_name)}Database {
+module.exports = class ${helpers.capitalized(databaseData.database_name)}Database {
   
-  /**
-   * This function will be called before node spins up.
-   * Node will start when there is a successful connection with your database.
-   *  
-   * @static
-   * @returns Promise
-   */
-  static connect() {
-    return new Promise(function (resolve, reject) {
-      // Database connection code goes here.
-      // Make sure that a successful connection fires "resolve(true)" and a unsuccessful connection a "reject(true)"
-    });
+  constructor() {
+    this.preconnect = true; // SirexJs will wait untill DB is connected before loading application
+    this.loaded = false; // Set this value to true when DB is connected
   }
-}
 
-module.exports = (() => { return new ${helpers.capitalized(databaseData.database_name)}Database(); })();
-
+};
 `);
 
   process.exit();
