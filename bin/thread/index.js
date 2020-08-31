@@ -37,16 +37,20 @@ module.exports = () => {
     `'use strict';
 
 const {
-  Services
+  Services,
+  Databases,
+  Extensions
 } = require('sirexjs');
 
-// ${threadData.thread_name} Thread function
-module.exports = function() {
+// "${threadData.thread_name}"" Thread function
+module.exports = function (payload) {
   // Put some long running code here.
   return 'something'; // Return something when you are done
 };
-
 `);
+
+
+
 
   process.exit();
 };

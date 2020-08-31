@@ -22,8 +22,29 @@ module.exports = () => {
   }
 
   fs.mkdirSync(`${serviceFolder}/routes`);
-  let routeIndex = fs.readFileSync(path.resolve(__dirname, "./temp/routeIndex.js"));
-  fs.writeFileSync(`${serviceFolder}/routes/index.js`, routeIndex);
+  fs.writeFileSync(`${serviceFolder}/routes/index.js`, `
+  'use strict';
+
+  const express = require('express');
+  const router = express.Router();
+
+  // User authentication
+  const {
+    Services,
+    Middleware
+  } = require('sirexjs');
+
+  module.exports = (function () {
+
+    // Put your service routes here
+
+    router.use('*', (req, res) => {
+      res.status(200).send('Resource for "${serviceData.service_name}" service not found.');
+    });
+
+    return router;
+  })();
+  `);
 
   fs.mkdirSync(`${serviceFolder}/model`);
  

@@ -1,15 +1,20 @@
 'use strict';
 
-const sirexjs = require('sirexjs');
+const {
+  Server,
+  Databases
+} = require('sirexjs');
 
-sirexjs.Server.load({
-  beforeLoad: () => {
+Server.load({
+  beforeLoad: async () => {
     // Before anything is loaded, even environment variables
   },
-  beforeCreate: (app) => {
+  beforeCreate: async (app) => {
     // Callback has access to nodejs instance via "app"
+    // Example DB return promise
+    return await Databases.inMemory.loadDB();
   },
-  created: (app) => {
+  created: async (app) => {
     // Callback has access to nodejs instance via "app"
   }
 });

@@ -36,10 +36,7 @@ const {
 
 module.exports = class ${helpers.capitalized(databaseData.database_name)}Database {
   
-  constructor() {
-    this.preconnect = true; // SirexJs will wait untill DB is connected before loading application
-    this.loaded = false; // Set this value to true when DB is connected
-  }
+  constructor() {}
 
 };
 `);

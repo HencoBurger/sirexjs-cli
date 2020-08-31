@@ -6,13 +6,16 @@ const router = express.Router();
 // User authentication
 const {
   Services,
-  middleware
+  Middleware
 } = require('sirexjs');
 
 module.exports = (function () {
 
-  router.use('*', (req, res) =>{
-    res.status(404).send(`Resource not be found.`);
+  // Tasks service example
+  router.use('/tasks', Services.tasks.routes);
+
+  router.use('*', (req, res) => {
+    res.status(200).send(`Resource not be found.`);
   });
 
   return router;

@@ -106,6 +106,35 @@ APP_PORT=3000
     fs.mkdirSync(`${projectFolder}/test`);
     fs.writeFileSync(`${projectFolder}/test/README.md`, '#Put all the tests for your code here.');
 
+    // Setup task test
+
+    fs.mkdirSync(`${projectFolder}/src/databases/inMemory`);
+    let inMemoryIndex = fs.readFileSync(path.resolve(__dirname, "example/databases/inMemory/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/databases/inMemory/index.js`, inMemoryIndex);
+
+    fs.mkdirSync(`${projectFolder}/src/middleware/auth`);
+    let authIndex = fs.readFileSync(path.resolve(__dirname, "example/middleware/auth/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/middleware/auth/index.js`, authIndex);
+
+    fs.mkdirSync(`${projectFolder}/src/services/tasks`);
+
+    fs.mkdirSync(`${projectFolder}/src/services/tasks/managers`);
+    let managersIndex = fs.readFileSync(path.resolve(__dirname, "example/services/tasks/managers/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/services/tasks/managers/index.js`, managersIndex);
+
+    fs.mkdirSync(`${projectFolder}/src/services/tasks/model`);
+    let modelIndex = fs.readFileSync(path.resolve(__dirname, "example/services/tasks/model/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/services/tasks/model/index.js`, modelIndex);
+
+    fs.mkdirSync(`${projectFolder}/src/services/tasks/routes`);
+    let routesIndex = fs.readFileSync(path.resolve(__dirname, "example/services/tasks/routes/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/services/tasks/routes/index.js`, routesIndex);
+
+    fs.mkdirSync(`${projectFolder}/src/services/tasks/threads`);
+    fs.mkdirSync(`${projectFolder}/src/services/tasks/threads/createFile`);
+    let threadsIndex = fs.readFileSync(path.resolve(__dirname, "example/services/tasks/threads/createFile/index.js"));
+    fs.writeFileSync(`${projectFolder}/src/services/tasks/threads/createFile/index.js`, threadsIndex);
+
     if(process.cwd() !== projectFolder) {
       shell.cd(projectFolder);
     }

@@ -106,7 +106,7 @@ module.exports = (function () {
   router.use('/user', serviceGateway.user.routes);
 
   router.use('*', (req, res) =>{
-    res.status(200).send(`Resource not be found.`);
+    res.status(404).send(`Resource not be found.`);
   });
 
   return router;
@@ -159,7 +159,7 @@ module.exports = (function () {
   })
 
   router.use('*', (req, res) =>{
-    res.status(200).send(`Resource not be found.`);
+    res.status(404).send(`Resource not be found.`);
   });
 
   return router;
