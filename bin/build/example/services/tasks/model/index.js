@@ -12,23 +12,23 @@ module.exports = class TasksModel extends Databases.inMemory {
     return 'tasks';
   }
 
-  createItem(data) {
-    return this.collection.create(data);
+  static createItem(data) {
+    return TasksModel.create(data);
   }
 
-  updateItem(id, data) {
-    return this.collection.findIdUpdate(id, data);
+  static updateItem(id, data) {
+    return TasksModel.findIdUpdate(id, data);
   }
 
-  getAllItems() {
-    return this.collection.find();
+  static getAllItems() {
+    return TasksModel.find();
   }
 
-  getItem(id) {
-    return this.collection.findId(id);
+  static getItem(id) {
+    return TasksModel.findId(id);
   }
 
-  removeItem(id) {
-    return this.collection.delete(id);
+  static removeItem(id) {
+    return TasksModel.delete(id);
   }
 };

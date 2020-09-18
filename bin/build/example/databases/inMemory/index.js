@@ -12,7 +12,7 @@ let database = {};
  */
 class InMemory {
 
-  create(data) {
+  static create(data) {
     let recordKey = moment().format('x');
     data.id = recordKey;
     database[recordKey] = data;
@@ -20,23 +20,23 @@ class InMemory {
     return database[recordKey];
   }
 
-  find() {
+  static find() {
     return Object.values(database);
   }
 
-  findId(id) {
+  static findId(id) {
     if (typeof database[id] === 'undefined') return null;
 
     return database[id];
   }
 
-  findIdUpdate(id, data) {
+  static findIdUpdate(id, data) {
     if (typeof database[id] === 'undefined') return null;
 
     return database[id] = Object.assign(database[id], data);
   }
 
-  delete(id) {
+  static delete(id) {
     delete database[id];
 
     return {
@@ -49,22 +49,18 @@ class InMemory {
  * Extend this Class with your prefered database
  * Ex. class InMemoryDatabase extends myDB {
  * 
-*/
+ */
 
-module.exports = class InMemoryDatabase {
-  constructor() {
-    this.collection = InMemoryDatabase.inMemory;
-  }
+module.exports = class InMemoryDatabase extends InMemory {
 
   static loadDB() {
     return new Promise((resolve) => {
-      
+
       console.log(`
       ----- InMemoryDB start in 1000ms -----
       `);
 
       setTimeout(() => {
-        this.inMemory = new InMemory();
         resolve(true);
       }, 1000);
     });
